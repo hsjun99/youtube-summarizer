@@ -1,6 +1,6 @@
 const { YoutubeTranscript } = require("youtube-transcript")
 
-async function youtubeToTranscript(youtubeUrl) {
+async function transcript(youtubeUrl) {
     const rawTranscriptList = await YoutubeTranscript.fetchTranscript(youtubeUrl)
     let fullTranscriptChunks = [""]
     rawTranscriptList.forEach((e) => {
@@ -17,4 +17,4 @@ async function youtubeToTranscript(youtubeUrl) {
     return fullTranscriptChunks
 }
 
-export default youtubeToTranscript
+module.exports = transcript

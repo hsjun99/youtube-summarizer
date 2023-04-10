@@ -1,4 +1,5 @@
-import { Configuration, OpenAIApi } from "openai"
+const { Configuration, OpenAIApi } = require("openai")
+require("dotenv").config()
 
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
@@ -6,4 +7,4 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration)
 
-export default openai
+module.exports = openai
