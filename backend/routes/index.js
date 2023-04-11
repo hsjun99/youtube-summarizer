@@ -21,6 +21,4 @@ router.post("/full", async (req, res) => {
     res.send(wh)
 })
 
-router.get("/whole", function (req, res) {})
-
 module.exports = router

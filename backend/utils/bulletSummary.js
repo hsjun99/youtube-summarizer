@@ -23,14 +23,14 @@ async function bulletSummary(chunks) {
         bulletSummaryChunks.forEach((e, i) => {
             let prev
             for (let i = 0; i < e.length; i++) {
-                if (e[i] === "-") {
+                if (e[i] === "-" && e[i + 1] === " ") {
                     if (prev) {
                         bulletSummaryFinal.push(e.slice(prev + 2, i))
                     }
                     prev = i
                 }
             }
-            bulletSummaryFinal.push(e.slice(prev))
+            bulletSummaryFinal.push(e.slice(prev + 2))
         })
         return bulletSummaryFinal
     } catch (e) {

@@ -63,7 +63,7 @@ const Summarizer = () => {
                     </Button>
                 </Box>
 
-                <Box w="50%">
+                <Box w="70%">
                     <Text fontSize="xl" fontWeight="bold">
                         Bullet Points
                     </Text>
@@ -74,7 +74,7 @@ const Summarizer = () => {
                             ))}
                     </VStack>
                 </Box>
-                <Box w="50%">
+                <Box w="70%">
                     <Text fontSize="xl" fontWeight="bold">
                         Full Summary
                     </Text>
