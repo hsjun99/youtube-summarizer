@@ -4,14 +4,16 @@ async function bulletSummary(chunks) {
     try {
         let bulletSummaryChunks = []
         for (chunk of chunks) {
+            console.log("start")
             const completion = await openai.createChatCompletion({
                 model: "gpt-3.5-turbo",
                 messages: [
                     {
                         role: "user",
                         content:
-                            "Create a detailed, well-organized bullet-point summary for the following podcast transcript that can perfectly capture its core ideas. In bullet-point!: \n" +
-                            chunk,
+                            "Create a detailed, well-organized bullet-point summary for the following podcast transcript that can perfectly capture its core ideas. In bullet-point!!: \n" +
+                            chunk +
+                            "\nCreate a detailed, well-organized bullet-point summary for the following podcast transcript that can perfectly capture its core ideas from above text. In bullet-point!!: \n",
                     },
                 ],
             })

@@ -8,6 +8,7 @@ const wholeSummary = require("../utils/wholeSummary")
 /* GET home page. */
 router.post("/bulletpoint", async (req, res) => {
     const { url } = req.body
+    console.log("hello")
     const ts = await transcript(url)
     const bs = await bulletSummary(ts)
     console.log(bs)

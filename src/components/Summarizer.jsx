@@ -16,19 +16,21 @@ import server from "../utils/server"
 const Summarizer = () => {
     const { colorMode, toggleColorMode } = useColorMode()
     const [url, setUrl] = useState("")
-    // const [video, setVideo] = useState(null)
     const [bulletPoints, setBulletPoints] = useState([])
     const [fullSummary, setFullSummary] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleSubmit = async () => {
+        setIsLoading(true)
+        setBulletPoints([])
+        setFullSummary("")
         // Call your API to get the video, bullet-points summary, and the whole summary
         console.log(url)
         const result1 = await server.post("/bulletpoint", { url: url })
-        console.log(result1.data)
         setBulletPoints(result1.data)
         const result2 = await server.post("/full", { bulletpoint: result1.data })
-        console.log(result2.data)
         setFullSummary(result2.data)
+        setIsLoading(false)
     }
 
     return (
@@ -58,12 +60,23 @@ const Summarizer = () => {
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
                     />
-                    <Button w="100%" mt={4} colorScheme="teal" onClick={handleSubmit}>
+                    <Button
+                        w="100%"
+                        mt={4}
+                        colorScheme="teal"
+                        onClick={handleSubmit}
+                        isLoading={isLoading}
+                        loadingText={
+                            bulletPoints.length == 0
+                                ? "Fetching Bullet-Summary"
+                                : "Fetching Full Summary"
+                        }
+                    >
                         Summarize Video
                     </Button>
                 </Box>
 
-                <Box w="70%">
+                <Box w="70%" p={5}>
                     <Text fontSize="xl" fontWeight="bold">
                         Bullet Points
                     </Text>
@@ -74,7 +87,7 @@ const Summarizer = () => {
                             ))}
                     </VStack>
                 </Box>
-                <Box w="70%">
+                <Box w="70%" p={5}>
                     <Text fontSize="xl" fontWeight="bold">
                         Full Summary
                     </Text>

@@ -9,9 +9,9 @@ async function wholeSummary(bulletSummaryChunks) {
                 {
                     role: "user",
                     content:
-                        "Write a long narrated engaging summary script in FIRST person from the following transcript:\n" +
+                        "Write a long narrated engaging summary script from the following transcript:\n" +
                         bulletSummary +
-                        "\nWrite a long narrated engaging summary script in FIRST person from the following transcript above:",
+                        "\nWrite a long narrated engaging summary script from the following transcript above:",
                 },
             ],
         })
