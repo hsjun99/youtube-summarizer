@@ -1,7 +1,15 @@
-const { YoutubeTranscript } = require("youtube-transcript")
+const { YoutubeTranscript } = require("youtube-transcript")  
+
+function retry(fn, retriesLeft = 3) {
+    return fn().catch(err => {
+        if (retriesLeft === 1) throw err;
+        console.log(`Retrying YouTube Transcript API call. Retries left: ${retriesLeft}`);
+        return retry(fn, retriesLeft - 1);
+    });
+}
 
 async function transcript(youtubeUrl) {
-    const rawTranscriptList = await YoutubeTranscript.fetchTranscript(youtubeUrl)
+    const rawTranscriptList = await retry(() => YoutubeTranscript.fetchTranscript(youtubeUrl))
     let fullTranscriptChunks = [""]
     rawTranscriptList.forEach((e) => {
         if (fullTranscriptChunks[fullTranscriptChunks.length - 1].length > 8000) {
