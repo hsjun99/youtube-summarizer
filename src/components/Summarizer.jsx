@@ -9,6 +9,7 @@ import {
     Heading,
     useColorMode,
     IconButton,
+    Spinner
 } from "@chakra-ui/react"
 import { SunIcon, MoonIcon } from "@chakra-ui/icons"
 import server from "../utils/server"
@@ -72,7 +73,7 @@ const Summarizer = () => {
                                 : "Fetching Full Summary"
                         }
                     >
-                        Summarize Video
+                        {isLoading ? <Spinner /> : 'Summarize Video'}
                     </Button>
                 </Box>
 
